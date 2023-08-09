@@ -13,6 +13,7 @@ function LeftSidebar() {
     const pathname = usePathname();
 
     return (
+        // sticky max-md:hidden -> Si la pantalla es más pequeña de 768 px se oculta el componente
         <section className="custom-scrollbar leftsidebar">
             <div className="flex w-full flex-1 flex-col gap-6 px-6">
                 
