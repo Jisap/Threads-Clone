@@ -72,10 +72,9 @@ const AccountProfile = ({ user, btnTitle }:Props) => {
                   <Image
                     src="/assets/profile.svg"
                     alt="profile photo"
-                    width={96}
-                    height={96}
-                    priority
-                    className="rounded-full object-contain"
+                    width={24}
+                    height={24}
+                    className="object-contain"
                   />
               )}
               <FormControl>
