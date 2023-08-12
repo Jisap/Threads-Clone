@@ -7,14 +7,21 @@ async function Page() {
     const user = await currentUser();
     if (!user) return null; // to avoid typescript warnings
 
-    const userInfo = await fetchUser(user.id);
-    if (userInfo?.onboarded) redirect("/");
-   
+    //const userInfo = await fetchUser(user.id);
+    //if (userInfo?.onboarded) redirect("/");
+    const userInfo = {
+        id:'',
+        _id:'',
+        username:'',
+        name: '',
+        bio: '',
+        image: ''
+    }
 
     const userData = {
         id: user.id,
         objectId: userInfo?._id,
-        username: userInfo ? userInfo?.username : user.username,
+        username: userInfo ? userInfo?.username : user.username ?? "",
         name: userInfo ? userInfo?.name : user.firstName ?? "",
         bio: userInfo ? userInfo?.bio : "",
         image: userInfo ? userInfo?.image : user.imageUrl,
