@@ -15,7 +15,7 @@ async function Page() {
         username:'',
         name: '',
         bio: '',
-        image: ''
+        image: user.imageUrl
     }
 
     const userData = {
