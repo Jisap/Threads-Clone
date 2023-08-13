@@ -1,5 +1,5 @@
 
-import { generateReactHelpers } from "@uploadthing/react/hooks"; // hooks personalizados de uplaodthing para react
+import { generateReactHelpers } from "@uploadthing/react/hooks"; // hooks personalizados de uploadthing para react
 
 import type { OurFileRouter } from "@/app/api/uploadthing/core"; // Configuración de rutas de uploadthing
 

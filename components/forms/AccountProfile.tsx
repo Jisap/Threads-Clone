@@ -21,6 +21,7 @@ import { Textarea } from "../ui/textarea";
 import { isBase64Image } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useUploadThing } from '@/lib/uploadthing';
+import { updateUser } from "@/lib/actions/user.action";
 
 interface Props {
   user: {
@@ -80,14 +81,27 @@ const AccountProfile = ({ user, btnTitle }:Props) => {
 
     const hasImageChanged = isBase64Image(blob);    // Si es una imagen válida en formato base64 y cumple con los formatos permitidos = true
     if (hasImageChanged) {                          // Si es así
-      const imgRes = await startUpload(files);      // Iniciamos la subida del archivo con el hook de uploadthing 
+      const imgRes = await startUpload(files);      // Iniciamos la subida del archivo con el hook de uploadthing (valida el usuario=logueado)
 
       if (imgRes && imgRes[0].fileUrl) {            // Si imgRes tiene un valor y contiene la prop fileUrl
         values.profile_photo = imgRes[0].fileUrl;   // Se actualiza la propiedad profile_phote en el objeto values con imagen cargada
       }
     }
 
-    // TODO: Update user profile
+    await updateUser({                              // Actualizamos en bd la info del user con los values del form
+      name: values.name,
+      path: pathname,
+      username: values.username,
+      userId: user.id,
+      bio: values.bio,
+      image: values.profile_photo,
+    });
+
+    if (pathname === "/profile/edit") {             // Si se accede a AccountProfile desde /profile/edit despues de actualizar volvemos atras 
+      router.back();
+    } else {
+      router.push("/");                             // Si se accede desde cualquier otro sitio volvemos al home
+    }
   }
 
   return (
