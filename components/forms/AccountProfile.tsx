@@ -21,7 +21,7 @@ import { Textarea } from "../ui/textarea";
 import { isBase64Image } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useUploadThing } from '@/lib/uploadthing';
-import { updateUser } from "@/lib/actions/user.action";
+import { updateUser } from "@/lib/actions/user.actions";
 
 interface Props {
   user: {
@@ -144,7 +144,8 @@ const AccountProfile = ({ user, btnTitle }:Props) => {
                   className="account-form_image-input"
                   onChange={(e) => handleImage(e, field.onChange)}
                 />
-              </FormControl>    
+              </FormControl> 
+              <FormMessage />   
             </FormItem>
           )}
         />
@@ -163,6 +164,7 @@ const AccountProfile = ({ user, btnTitle }:Props) => {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -181,6 +183,7 @@ const AccountProfile = ({ user, btnTitle }:Props) => {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -199,6 +202,7 @@ const AccountProfile = ({ user, btnTitle }:Props) => {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
