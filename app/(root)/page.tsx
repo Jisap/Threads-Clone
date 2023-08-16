@@ -7,7 +7,7 @@ import ThreadCard from "@/components/cards/ThreadCard";
 export default async function Home() {
 
   
-    const result = await fetchPosts(1, 30);
+    const result = await fetchPosts(1, 30); // Threads
     const user = await currentUser();
     if (!user) return null;
   
@@ -23,7 +23,7 @@ export default async function Home() {
           <>
             { result.posts.map((post) => (
               <ThreadCard 
-                key={post.id}
+                key={post.id} // id del thread
                 currentUserId={user?.id}
                 id={post.id}
                 parentId={post.parentId} 
@@ -31,7 +31,7 @@ export default async function Home() {
                 author={post.author}
                 community={post.community}
                 createdAt={post.createdAt}
-                comments={post.children}
+                comments={post.children} // Los children de cada thread son los comentarios que tiene cada thread
               />
             ))}
           </>

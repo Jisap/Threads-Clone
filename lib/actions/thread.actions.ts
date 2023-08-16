@@ -69,3 +69,41 @@ export async function fetchPosts( pageNumber = 1, pageSize = 20 ){
 
     return { posts, isNext}
 }
+
+export async function fetchThreadById( id:string ){
+    connectToDB();
+
+    try {
+        //TODO: Populate Community
+        const thread = await Thread.findById(id)   
+            .populate({
+                path: 'author',
+                model: User,
+                select: "_id id name image"
+            }) 
+            .populate({
+                path: 'children',
+                populate: [
+                    {
+                        path: 'author', // Autor del comentario
+                        model: User,
+                        select: "_id id name parentId image"
+                    },
+                    {
+                        path: 'children',   // [] con los comentarios del autor del anterior comentario
+                        model: Thread,
+                        populate:{
+                            path: 'author',
+                            model: User,
+                            select: "_id id name parentId image"
+                        }
+                    }
+                ]
+            }).exec();
+
+            return thread;
+
+    } catch (error: any) {
+        throw new Error(`Error fetching Thread: ${error.message}`)
+    }
+}

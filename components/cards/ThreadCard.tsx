@@ -28,7 +28,7 @@ interface Props {
 }
 
 const ThreadCard = ({
-  id,
+  id, // id del thread
   currentUserId,
   parentId,
   content,
@@ -97,6 +97,7 @@ const ThreadCard = ({
                 />
               </div>
 
+              {/* children[] de cada Thread */}
               {isComment && comments.length > 0 && (
                 <Link href={`/thread/${id}`}>
                   <p className='mt-1 text-subtle-medium text-gray-1'>
