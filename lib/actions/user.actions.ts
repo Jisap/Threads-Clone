@@ -47,7 +47,7 @@ export async function updateUser({
 
 }
 
-export async function fetchUser( userId: string){
+export async function fetchUser( userId: string){ // id del clerk
 
     try {
         connectToDB();
