@@ -5,13 +5,11 @@ import Community from '../../lib/models/community.model';
 import ThreadCard from "@/components/cards/ThreadCard";
 
 export default async function Home() {
-
   
     const result = await fetchPosts(1, 30); // Threads
     const user = await currentUser();
     if (!user) return null;
   
-
   return (
     <>
       <h1 className="head-text text-left">Home</h1>
@@ -23,9 +21,9 @@ export default async function Home() {
           <>
             { result.posts.map((post) => (
               <ThreadCard 
-                key={post.id} // id del thread
+                key={post._id} // id del thread
                 currentUserId={user?.id}
-                id={post.id}
+                id={post._id}
                 parentId={post.parentId} 
                 content={post.text}
                 author={post.author}

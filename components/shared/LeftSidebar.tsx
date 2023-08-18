@@ -11,6 +11,7 @@ function LeftSidebar() {
 
     const router = useRouter();
     const pathname = usePathname();
+    const { userId } = useAuth();
 
     return (
         // sticky max-md:hidden -> Si la pantalla es más pequeña de 768 px se oculta el componente
@@ -20,6 +21,8 @@ function LeftSidebar() {
                 {sidebarLinks.map((link) => {
                 
                     const isActive = (pathname.includes(link.route) && link.route.length > 1) || pathname === link.route;
+
+                    if (link.route === "/profile") link.route = `${link.route}/${userId}`;
 
                     return (
                         <Link
