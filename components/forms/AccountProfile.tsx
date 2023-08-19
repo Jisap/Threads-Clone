@@ -35,6 +35,7 @@ interface Props {
   btnTitle: string
 }
 
+// Permite actualizar los datos del usuario en la bd
 const AccountProfile = ({ user, btnTitle }:Props) => {
 
   const router = useRouter();

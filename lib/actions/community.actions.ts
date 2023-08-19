@@ -53,14 +53,15 @@ export async function fetchCommunityDetails(id: string) {
     try {
         connectToDB();
 
-        const communityDetails = await Community.findOne({ id }).populate([
-            "createdBy",
-            {
-                path: "members",
-                model: User,
-                select: "name username image _id id",
-            },
-        ]);
+        const communityDetails = await Community.findOne({ id })
+            .populate([
+                "createdBy",
+                {
+                    path: "members",
+                    model: User,
+                    select: "name username image _id id",
+                },
+            ]);
 
         return communityDetails;
     } catch (error) {
@@ -153,6 +154,7 @@ export async function fetchCommunities({
         const isNext = totalCommunitiesCount > skipAmount + communities.length;
 
         return { communities, isNext };
+        
     } catch (error) {
         console.error("Error fetching communities:", error);
         throw error;
